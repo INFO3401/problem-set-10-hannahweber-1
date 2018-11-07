@@ -37,10 +37,10 @@ class LinearAnalysis:
         best_variable = ""
         
         for column in data.variables:
-                if column != self.targetY:
-                        independent_variable = data.dataset[column].values
-                        # this line fixed an error that was occurring when running the line above
-                        independent_variable = independent_variable.reshape(len(independent_variable), 1)
+            if column != self.targetY:
+                    independent_variable = data.dataset[column].values
+                    # this line fixed an error that was occurring when running the line above
+                    independent_variable = independent_variable.reshape(len(independent_variable), 1)
                         
         regr = LinearRegression()
         regr.fit(independent_variable, data.dataset[self.targetY])
@@ -56,7 +56,6 @@ class LinearAnalysis:
             
         self.bestX = best_variable
         print(best_variable, best_rscore)
-        
         
 # Part C
 
@@ -94,6 +93,33 @@ class LogisticAnalysis:
         self.bestX = best_variable
         print(best_variable, best_rscore)
         
+    
+    def runMultipleRegression(self, data):
+        best_rscore = -1
+        best_variable = ""
+        
+        for column in data.variables:
+            if column != self.targetY:
+                independent_variable = data.dataset[column].values
+                # this line fixed an error that was occurring when running the line above
+                independent_variable = independent_variable.reshape(len(independent_variable), 1)
+                        
+            regr = LogisticRegression()
+            regr.fit(independent_variable, data.dataset[self.targetY])
+            #regr.fit(<candy>, <sugar>)
+            prediction = regr.predict(independent_variable)
+            #regr.predict(<candy>)
+            r_score = r2_score(data.dataset[self.targetY], prediction)
+            #r2_score(<sugar>, <predicted values>)
+
+            if r_score > best_rscore:
+                best_rscore = r_score
+                best_variable = column
+
+            self.bestX = best_variable
+            print(best_variable, best_rscore)
+        
+        
 # Last Week
 analysisData = AnalysisData()
 analysisData.parseFile("candy-data.csv")
@@ -103,7 +129,8 @@ linearAnalysis = LinearAnalysis("sugarpercent")
 linearAnalysis.runSimpleAnalysis(analysisData)
 
 # Problem 1
+# They both find the same optimal variable "winpercent" but linear regression fits the data better.
 logisticAnalysis = LogisticAnalysis("chocolate")
 logisticAnalysis.runSimpleAnalysis(analysisData)
 
-# They both find the same optimal variable "winpercent" but linear regression fits the data better.
+#Problem 2
