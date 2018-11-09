@@ -118,7 +118,9 @@ class LogisticAnalysis:
 
             self.bestX = best_variable
             print(best_variable, best_rscore)
-        
+            
+            #Use for P3, talked about in class - will print out B0 and B1
+            print(regr.coef_, regr.intercept_)
         
 # Last Week
 analysisData = AnalysisData()
@@ -134,3 +136,16 @@ logisticAnalysis = LogisticAnalysis("chocolate")
 logisticAnalysis.runSimpleAnalysis(analysisData)
 
 #Problem 2
+
+#Friday
+# a) independent: candies - categorical
+#    dependent: sugar - continuous
+#    null: both contain the same amount of sugar
+
+# b) independent: blue and red states - categorical
+#    dependent: ticket voters - continuous
+#    null: both contain the same amount of ticket voters
+
+# b) independent: phones with battery life - categorical
+#    dependent: selling rate - continuous
+#    null: all have the same selling rate
