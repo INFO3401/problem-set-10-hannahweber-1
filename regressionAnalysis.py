@@ -136,6 +136,8 @@ logisticAnalysis = LogisticAnalysis("chocolate")
 logisticAnalysis.runSimpleAnalysis(analysisData)
 
 #Problem 2
+multiAnalysis = LogisticAnalysis("chocolate")
+multiAnalysis.runMultipleRegression(analysisData)
 
 #Friday
 # a) independent: candies - categorical
