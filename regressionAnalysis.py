@@ -56,6 +56,8 @@ class LinearAnalysis:
             
         self.bestX = best_variable
         print(best_variable, best_rscore)
+        print("Linear Regression, " , regr.coef_, regr.intercept_)
+
         
 # Part C
 
@@ -92,6 +94,7 @@ class LogisticAnalysis:
             
         self.bestX = best_variable
         print(best_variable, best_rscore)
+        print("Logistic Regression, " , regr.coef_, regr.intercept_)
         
     
     def runMultipleRegression(self, data):
@@ -115,12 +118,14 @@ class LogisticAnalysis:
             if r_score > best_rscore:
                 best_rscore = r_score
                 best_variable = column
+                
 
-            self.bestX = best_variable
-            print(best_variable, best_rscore)
+        self.bestX = best_variable
+        print(best_variable, best_rscore)
+            
             
             #Use for P3, talked about in class - will print out B0 and B1
-            print(regr.coef_, regr.intercept_)
+        print("Multiple Regression, " , regr.coef_, regr.intercept_)
         
 # Last Week
 analysisData = AnalysisData()
@@ -138,6 +143,20 @@ logisticAnalysis.runSimpleAnalysis(analysisData)
 #Problem 2
 multiAnalysis = LogisticAnalysis("chocolate")
 multiAnalysis.runMultipleRegression(analysisData)
+
+#Problem 3
+# Linear Regression: y = b0 + b1x
+#   b0 = 0.0044
+#   b1 = 0.2571
+
+# Logistic Regression: y = b0 + b1x
+#   b0 = ?
+#   b1 = ?
+
+# Multiple Logistic Regression: y = b0 + b1x1 + b2x2 + ...
+#   b0 = ?
+#   b1 = ?
+#   b2 = ?
 
 #Friday
 # a) independent: candies - categorical
